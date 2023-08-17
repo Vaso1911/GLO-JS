@@ -5,5 +5,6 @@ rollback,
 fullPrice,
 adaptive;
 
-alert('Alert')
+alert('Alert');
+
 console.log('Log');
