@@ -1,10 +1,12 @@
-let  title,
-screens,
-screenPrice,
-rollback,
-fullPrice,
-adaptive;
+const num = 266219;
+const numSplit = String(num).split('').map(Number);
+const numSplitMult = numSplit.reduce( (acc, value) => acc * value, 1);
 
-alert('Alert');
+console.log(` ${ numSplitMult }`);
 
-console.log('Log');
+let numDegree = numSplitMult
+for (let i = 1; i < 3; i++) {
+  numDegree *= numSplitMult; // надеюсь я правильно понял про оператор и использовал только 1 (*)
+}
+
+console.log( String(`${numDegree}`.slice(0, 2)) );
