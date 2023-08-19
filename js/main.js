@@ -17,6 +17,7 @@ console.log(screens.toLowerCase().split(','));
 
 console.log( fullPrice * (rollback / 100) );
 
+
 const calcPrice = (a, b, c, d) => {
 
     if (a.includes('Сложные')) {
@@ -32,7 +33,6 @@ const calcPrice = (a, b, c, d) => {
   console.log(`Процент отката посреднику за работу: ${ c * ( d / 100) } рублей`);
 };
 
-calcPrice(screens.split(',')[2], screenPrice, fullPrice, rollback); // это конечно кринж! ))) 
-// Типа где-то мы создаём условие,что если пользователь выбрал тип вёрстки то мы пересчитываем стоимость:) 
-// Вреали это будет выглядеть немного иначе)))
-// Но так как вы попросили заменить переменные на константы ) это что бы консоль не ругалась))
+const screensInteractive = screens.split(',')[2]
+
+calcPrice(screensInteractive, screenPrice, fullPrice, rollback);
