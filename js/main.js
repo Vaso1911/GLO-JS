@@ -1,38 +1,36 @@
-const title = 'Проект',
-  screens = 'Простые, Сложные, Интерактивные',
-  screenPrice = 10000,
-  rollback = 15,
-  fullPrice = 30000,
-  adaptive = true;
+'use strict'
+const title = prompt("Как называется ваш проект?");
+const screens = prompt("Какие типы экранов нужно разработать? (Простые, Сложные, Интерактивные)");
+const screenPrice = parseFloat(prompt("Сколько будет стоить данная работа?"));
+const rollback = 15;
+const adaptiveInput = prompt("Нужен ли адаптив на сайте?");
+const adaptive = Boolean(adaptiveInput);
 
-console.log(typeof title, typeof fullPrice, typeof adaptive);
+const service1 = prompt("Какой дополнительный тип услуги нужен? (первый вопрос)");
+const servicePrice1 = parseFloat(prompt("Сколько это будет стоить? (первый вопрос)"));
+const service2 = prompt("Какой дополнительный тип услуги нужен? (второй вопрос)");
+const servicePrice2 = parseFloat(prompt("Сколько это будет стоить? (второй вопрос)"));
+const zeroServicePrice1 = !isNaN(servicePrice1) ? servicePrice1 : 0;
+const zeroServicePrice2 = !isNaN(servicePrice2) ? servicePrice2 : 0;
+const fullPrice = screenPrice + zeroServicePrice1 + zeroServicePrice2;
+console.log(fullPrice);
+const servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback / 100)));
 
-console.log(screens.length);
+console.log("Название проекта:", title);
+console.log("Типы экранов:", screens);
+console.log("Стоимость работы:", screenPrice);
+console.log("Адаптив на сайте:", adaptive);
+console.log("Итоговая стоимость после отката:", servicePercentPrice);
 
-console.log(`Стоимость верстки экранов ${screenPrice} рублей`);
+if (fullPrice > 30000) {
+  console.log("Даем скидку в 10%");
+} else if (fullPrice > 15000 && fullPrice <= 30000) {
+  console.log("Даем скидку в 5%");
+} else if (fullPrice > 0 && fullPrice <= 15000) {
+  console.log("Скидка не предусмотрена");
+} else {
+  console.log("Что-то пошло не так");
+}
 
-console.log(`Стоимость разработки сайта ${fullPrice} рублей`);
-
-console.log(screens.toLowerCase().split(','));
-
-console.log( fullPrice * (rollback / 100) );
 
 
-const calcPrice = (a, b, c, d) => {
-
-    if (a.includes('Сложные')) {
-      b = b * 2;
-      c = c * 2;
-    } else if (a.includes('Интерактивные')) {
-      b = b * 3;
-      c = c * 3;
-    }
-
-  console.log(`Стоимость верстки экранов ${b} рублей`);
-  console.log(`Стоимость разработки сайта ${c} рублей`);
-  console.log(`Процент отката посреднику за работу: ${ c * ( d / 100) } рублей`);
-};
-
-const screensInteractive = screens.split(',')[2]
-
-calcPrice(screensInteractive, screenPrice, fullPrice, rollback);
