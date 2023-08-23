@@ -1,20 +1,21 @@
-const lang = 'ru';
+let testString = '  Это строка и она имеет более тридцати символов  ';
+let testNotString = 123;
+let testStringTrim = testString.trim();
 
-const arrWeek = [
-  ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'], 
-  ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'] 
-];
-
-
-if (lang === 'ru') {
-  console.log( 'Дни недели:', arrWeek[0].join(', ') + '.' );
-} else {
-  console.log( 'Days of the week:', arrWeek[1].join(', ') + '.' );
+const validString = function (arg) {
+  if (typeof arg !== "string") {
+    return console.log('Это не строка');
+  } else {
+    console.log('Это строка');
+  }
 }
 
-const namePerson = 'Александр';
+const convertString = function (str) {
+  if (str.length > 30) {
+    console.log(str.slice(0, 30) + '...');
+  }
+}
 
-const role = namePerson === 'Артем' ? 'директор' :
-  namePerson === 'Александр' ? 'преподаватель' : 'студент';
-
-console.log(role);
+validString(testString);
+validString(testNotString);
+convertString(testStringTrim);
