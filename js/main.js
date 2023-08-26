@@ -1,21 +1,28 @@
-let testString = '  Это строка и она имеет более тридцати символов  ';
-let testNotString = 123;
-let testStringTrim = testString.trim();
+const arr = ['24', '333', '467', '98', '44', '2456', '12']
 
-const validString = function (arg) {
-  if (typeof arg !== "string") {
-    return console.log('Это не строка');
-  } else {
-    console.log('Это строка');
+arr.forEach(e => {
+  if (e.slice(0, 1) === '2' || e.slice(0, 1) === '4') {
+
+    if (e.slice(0, 1) === '2') {
+      console.log(`${e} Это число начинается на 2`);
+    } else {
+      console.log(`${e} Это число начинается на 4`);
+    }
+
+  }
+})
+
+for (let i = 2; i <= 100; i++) {
+  let simple = true
+
+  for (let j = 2; j <= Math.sqrt(i); j++) {
+    if (i % j === 0) {
+      simple = false; 
+      break;
+    }
+  }
+
+  if (simple) {
+    console.log(`У числа ${i} Делители этого числа: 1 и ${i}`);
   }
 }
-
-const convertString = function (str) {
-  if (str.length > 30) {
-    console.log(str.slice(0, 30) + '...');
-  }
-}
-
-validString(testString);
-validString(testNotString);
-convertString(testStringTrim);
