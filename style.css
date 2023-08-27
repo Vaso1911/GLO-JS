@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(25, 25, 109);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 30px 160px 80px;
+  max-width: 1400px;
+  color: rgb(40, 156, 156);
+}
+
+h1 {
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.list {
+  list-style: none;
+}
+
+.list__item:not(:last-child) {
+margin-bottom: 10px;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-bold {
+  font-size: 32px;
+  font-weight: bold;
+}
