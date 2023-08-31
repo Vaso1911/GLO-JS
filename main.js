@@ -56,14 +56,4 @@ $lists.forEach(el => {
   elementForeword.forEach(e => listELement[0].after(e))
 });
 
-const btn = document.querySelector('button')
-const ul = document.querySelector('ul')
-const input = document.querySelector('input')
-btn.addEventListener('click', () => {
-  if (input.value != '') {
-    const li = document.createElement('li')
-    li.textContent = input.value
-    ul.append(li)
-    input.value = ''
-  }
-})
+
