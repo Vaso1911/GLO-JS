@@ -18,8 +18,12 @@ const leftContainer = document.querySelector('.elements')
 const allInputsText = leftContainer.querySelectorAll('[type=text]')
 const allInputs = leftContainer.querySelectorAll('input')
 const allCheckbox = leftContainer.querySelectorAll('label')
-
-
+const cmsCheckbox = document.getElementById('cms-open')
+const cmsVariants = document.querySelector('.hidden-cms-variants')
+const cms = document?.querySelector('.cms')
+const cmsViewlSelect = document?.getElementById('cms-select')
+const cmsOtherInput = document?.getElementById('cms-other-input')
+const cmsControlInput = cms?.querySelector('.main-controls__input')
 
 const appData = {
   title: '',
@@ -27,6 +31,7 @@ const appData = {
   screenPrice: 0,
   adaptive: true,
   rollback: 0,
+  cms: 0,
   servicesPercent: {},
   servicesNumber: {},
   servicePricesPercent: 0,
@@ -41,7 +46,27 @@ const appData = {
     resetBtn.addEventListener('click', this.reset)
     btnScreen.addEventListener('click', this.addScreenBlock)
     inputRange.addEventListener('input', this.range)
+    cmsCheckbox.addEventListener('click', this.showCms)
+  },
 
+
+  start: function () {
+    appData.range()
+    appData.showCms()
+    appData.showIntput()
+    appData.addScreens()
+    appData.addServices()
+    appData.addPrices()
+    appData.showResult()
+    appData.logger()
+  },
+
+  // запускаем все сбросы
+  reset: function () {
+    appData.resetShowIntput()
+    appData.resetInputValue()
+    appData.showBtnStart()
+    appData.addBtnAtr()
   },
 
   range: function () {
@@ -50,125 +75,138 @@ const appData = {
     span.textContent = `${newValue}%`
   },
 
-  start: function () {
-    appData.showIntput()
-    appData.addScreens()
-    appData.addServices()
-    appData.addPrices()
-    appData.logger()
-    appData.showResult()
+  //добавляем кнопке визуалный эффект ненажатия
+  addBtnAtr: function () {
+    startBtn.setAttribute('disabled', 'disabled')
+    startBtn.style.background = "gray"
+    startBtn.style.cursor = "initial"
   },
 
-  //добавляем кнопке визуалный эффект ненажатия\
-addBtnAtr: function () {
-startBtn.setAttribute('disabled', 'disabled')
-startBtn.style.background = "gray"
-startBtn.style.cursor = "initial"
-},
 
-// запускаем все сбросы
-reset: function () {
-appData.resetShowIntput()
-appData.resetInputValue()
-appData.showBtnStart() 
-appData.addBtnAtr()
-},
+  showCms: function () {
+    cmsVariants.style.display = 'flex'
 
+    cmsViewlSelect.addEventListener('change', () => {
 
-showIntput: function () {
-  screens.forEach(e => {
-    const select = e.querySelector('select')
-    select.setAttribute('disabled', 'disabled')
-    select.style.opacity = '0.5'
-    select.style.backgroundColor = "gray"
-    select.style.borderColor = "gray"
-    select.style.cursor = "initial"
-  })
+      if (cmsViewlSelect[2].selected == true) {
 
-  allInputsText.forEach(e => {
-    e.style.opacity = '0.5'
-    e.style.backgroundColor = "gray"
-    e.style.borderColor = "gray"
-    e.style.cursor = "initial"
-  })
+        cmsControlInput.style.display = 'block'
+        cmsOtherInput.addEventListener('input', () => {
+          cmsViewlSelect[2].value = +cmsOtherInput.value
+          appData.cms = +cmsViewlSelect.value
+        })
 
-  allInputs.forEach(e => {
-    e.setAttribute('disabled', 'disabled')
-  })
+      } else {
+        cmsControlInput.style.display = 'none'
+      }
+      appData.cms = +cmsViewlSelect.value
+    })
+  },
 
-  btnScreen.setAttribute('disabled', 'disabled')
-  btnScreen.style.opacity = '0.5'
-  btnScreen.style.backgroundColor = "gray"
-  btnScreen.style.cursor = "initial"
+  showIntput: function () {
+    screens.forEach(e => {
+      const select = e.querySelector('select')
+      select.setAttribute('disabled', 'disabled')
+      select.style.opacity = '0.5'
+      select.style.backgroundColor = "gray"
+      select.style.borderColor = "gray"
+      select.style.cursor = "initial"
+    })
 
-  allCheckbox.forEach( e => {
-    e.style.opacity = '0.3'
-    e.style.cursor = "initial"
-  })
+    allInputsText.forEach(e => {
+      e.style.opacity = '0.5'
+      e.style.backgroundColor = "gray"
+      e.style.borderColor = "gray"
+      e.style.cursor = "initial"
+    })
 
-startBtn.style.display = 'none'
-resetBtn.style.display = 'block'
-},
+    allInputs.forEach(e => {
+      e.setAttribute('disabled', 'disabled')
+    })
 
-resetInputValue: function () {
-  const screens = document.querySelectorAll('.screen')
-  screens.forEach(e => {
-    const select = e.querySelector('select')
-    const input = e.querySelector('input')
-    select[0].selected = true
-    input.value= ''
-  })
+    btnScreen.setAttribute('disabled', 'disabled')
+    btnScreen.style.opacity = '0.5'
+    btnScreen.style.backgroundColor = "gray"
+    btnScreen.style.cursor = "initial"
 
-  allInputs.forEach(e => {
-    if (e.checked) {
-      e.checked = false
-    }
-  })
-
-  rightDivInputs.forEach(e => {
-    e.value = 0
-  })
-
-  inputRange.value = 0;
-  span.textContent = `0%`;
-},
+    allCheckbox.forEach(e => {
+      e.style.opacity = '0.3'
+      e.style.cursor = "initial"
+    })
 
 
-resetShowIntput: function () {
-  screens.forEach(e => {
-    const select = e.querySelector('select')
-    select.removeAttribute('disabled')
-    select.style.opacity = '1'
-    select.style.backgroundColor = "field"
-    select.style.borderColor = "#A52A2A"
-    select.style.cursor = "pointer"
-  })
+    inputRange.style.backgroundColor = 'gray'
+    inputRange.style.borderColor = 'gray'
+    inputRange.style.opacity = '0.5'
 
-  allInputsText.forEach(e => {
-    e.style.opacity = '1'
-    e.style.backgroundColor = "rgba(239, 239, 239, 0.3)"
-    e.style.borderColor = "#A52A2A"
-    e.style.cursor = "pointer"
-  })
+    startBtn.style.display = 'none'
+    resetBtn.style.display = 'block'
+    cmsVariants.style.display = 'none'
+  },
 
-  allInputs.forEach(e => {
-    e.removeAttribute('disabled')
-  })
+  resetInputValue: function () {
+    const screens = document.querySelectorAll('.screen')
+    screens.forEach(e => {
+      const select = e.querySelector('select')
+      const input = e.querySelector('input')
+      select[0].selected = true
+      input.value = ''
+    })
 
-  inputRange.style.backgroundColor = "#A52A2A"
-  btnScreen.removeAttribute('disabled')
-  btnScreen.style.opacity = '1'
-  btnScreen.style.backgroundColor = "#A52A2A"
-  btnScreen.style.cursor = "pointer"
+    allInputs.forEach(e => {
+      if (e.checked) {
+        e.checked = false
+      }
+    })
 
-  allCheckbox.forEach( e => {
-    e.style.opacity = '1'
-    e.style.cursor = "pointer"
-  })
+    rightDivInputs.forEach(e => {
+      e.value = 0
+    })
 
-startBtn.style.display = 'block'
-resetBtn.style.display = 'none'
-},
+    inputRange.value = 0;
+    span.textContent = `0%`;
+    cmsViewlSelect[0].selected = true
+  },
+
+  resetShowIntput: function () {
+    screens.forEach(e => {
+      const select = e.querySelector('select')
+      select.removeAttribute('disabled')
+      select.style.opacity = '1'
+      select.style.backgroundColor = "field"
+      select.style.borderColor = "#A52A2A"
+      select.style.cursor = "pointer"
+    })
+
+    allInputsText.forEach(e => {
+      e.style.opacity = '1'
+      e.style.backgroundColor = "rgba(239, 239, 239, 0.3)"
+      e.style.borderColor = "#A52A2A"
+      e.style.cursor = "pointer"
+    })
+
+    allInputs.forEach(e => {
+      e.removeAttribute('disabled')
+    })
+
+    inputRange.style.backgroundColor = "#A52A2A"
+    btnScreen.removeAttribute('disabled')
+    btnScreen.style.opacity = '1'
+    btnScreen.style.backgroundColor = "#A52A2A"
+    btnScreen.style.cursor = "pointer"
+
+    allCheckbox.forEach(e => {
+      e.style.opacity = '1'
+      e.style.cursor = "pointer"
+    })
+
+    inputRange.style.backgroundColor = '#A52A2A'
+    inputRange.style.borderColor = '#A52A2A'
+    inputRange.style.opacity = '1'
+
+    startBtn.style.display = 'block'
+    resetBtn.style.display = 'none'
+  },
 
   // проверяем выбран ли тип экранов и внесено ли кол-во , если так то добавляем ей визуала
   showBtnStart: function () {
@@ -193,6 +231,7 @@ resetBtn.style.display = 'none'
     })
   },
 
+
   // добавляем вывод значений в инпуты справа
   showResult: function () {
     total.value = this.screenPrice
@@ -206,6 +245,7 @@ resetBtn.style.display = 'none'
     } else if (this.rollback == 0) {
       totalCountRollback.value = this.fullPrice
     }
+
 
   },
 
@@ -259,7 +299,7 @@ resetBtn.style.display = 'none'
 
   addRollback: function () {
     const showValue = inputRange.value;
-    this.rollback = showValue;
+    this.rollback = +showValue;
     span.textContent = `${showValue}%`;
 
   },
@@ -282,9 +322,16 @@ resetBtn.style.display = 'none'
     }
 
     this.fullPrice = this.screenPrice + this.servicePricesPercent + this.servicePricesNumber;
+
+    if (this.cms > 0) {
+      this.fullPrice += this.fullPrice * this.cms / 100
+    } else {
+      console.log('error');
+    }
   },
 
   logger: function () {
+    console.log(this.cms);
     console.log(this.rollback);
     console.log(this.servicePercentPrices);
     console.log('стоимость верстки экранов ' + this.screenPrice + 'руб и стоимость разработки сайта ' + this.fullPrice + ' руб');
