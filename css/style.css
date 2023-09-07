@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(63, 78, 165);
+  color: aliceblue;
+  height: 100svh;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+  padding: 75px;
+  max-width: 1200px;
+  border-radius: 30px;
+  background-color: rgb(8, 18, 79);
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:20px;
+  text-align: center;
+  border-radius: 30px;
+}
