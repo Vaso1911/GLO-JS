@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <script defer src="./js/main.js"></script>
+  <script defer src="./js/main-2.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 class="title-site">Создайте своего героя</h1>
+  <div class="container">
+    <form class="form" action="">
+      <div class="radio-wrapper" id="radio-wrapper">
+        <label class="radio-label">
+          <input class="hidden" id="sonic" type="radio" value="sonic" name="hero">
+          <span>Соник</span>
+        </label>
+        <label class="radio-label">
+          <input class="hidden" id="dp" type="radio" value="dp" name="hero">
+          <span>Дедпул</span>
+        </label>
+        <label class="radio-label">
+          <input class="hidden" id="front" type="radio" value="front" name="hero">
+          <span>Фронтендер</span>
+        </label>
+        <label class="radio-label">
+          <input class="hidden" id="beck" type="radio" value="beck" name="hero">
+          <span>Бэкендер</span>
+        </label>
+      </div>
+      <div class="select-wrapper">
+
+        <select class="select" name="power" id="power" style="display: none;"></select>
+
+        <select class="select" name="trait" id="trait" style="display: none;"></select>
+
+        <select class="select" name="friend" id="friend" style="display: none;"></select>
+
+      </div>
+      <textarea class="textarea" name="textarea" id="textarea" cols="30" rows="8"
+        placeholder="Напишите не много о себе ( не менее 10 символов)" style="display: none;"></textarea>
+
+      <button class="btn btn-reset" id="btn" type="button" style="display: none;">Создать</button>
+
+    </form>
+  </div>
+  <div class="container">
+    <ul class="list list-reset">
+      <li class="list__item">
+        <article class="card">
+          <div class="card__about">
+            <img src="/img/joker.jpg" alt="Джокер с надписью хахаха" class="card__ava" width="165" height="244">
+            <div class="card__descr">
+              <h2 class="card__title">Джокер</h2>
+              <p class="card__text">
+                Всем привет как вы поняли меня зовут Джокер и я сумашедший, так как пишу на
+                JS ) . У меня есть девушка Харли Квин и нам нравится вместе сходить с ума. ХаХаХаХа
+              </p>
+            </div>
+          </div>
+          <div class="card__skills">
+            <ul class="card-list list-reset">
+              <li class="card-list__item">Знаю JS</li>
+              <li class="card-list__item">Люблю чёрный юмор</li>
+              <li class="card-list__item">Лучший друг Бэтман</li>
+            </ul>
+            <button class="card__btn card__btn--joker btn-reset" disabled>
+              <svg class="svg-lid" width="30" height="12" viewBox="0 0 30 12" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M22.5 4.375V7.5H28.125C28.6223 7.5 29.0992 7.69755 29.4508 8.04918C29.8025 8.4008 30 8.87772 30 9.375C30 9.87228 29.8025 10.3492 29.4508 10.7008C29.0992 11.0525 28.6223 11.25 28.125 11.25H1.875C1.37772 11.25 0.900805 11.0525 0.549175 10.7008C0.197544 10.3492 0 9.87228 0 9.375C0 8.87772 0.197544 8.4008 0.549175 8.04918C0.900805 7.69755 1.37772 7.5 1.875 7.5H7.5V4.375C7.5 1.96001 9.46 0 11.875 0H18.125C20.54 0 22.5 1.96001 22.5 4.375ZM11.25 4.375V7.5H18.75V4.375C18.75 4.20924 18.6842 4.05027 18.5669 3.93306C18.4497 3.81585 18.2908 3.75 18.125 3.75H11.875C11.7092 3.75 11.5503 3.81585 11.4331 3.93306C11.3158 4.05027 11.25 4.20924 11.25 4.375Z"
+                  fill="#1E1E1E" />
+              </svg>
+              <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4.2943 2.68751L5.9443 19.1875C5.9598 19.3418 6.0321 19.4848 6.14714 19.5887C6.26218 19.6927 6.41175 19.7502 6.5668 19.75H19.5418C19.6968 19.7502 19.8464 19.6927 19.9615 19.5887C20.0765 19.4848 20.1488 19.3418 20.1643 19.1875L21.8143 2.68751C21.8763 2.2032 22.1248 1.76217 22.5069 1.45821C22.889 1.15425 23.3746 1.01133 23.8604 1.05985C24.3463 1.10837 24.7941 1.3445 25.1085 1.71802C25.423 2.09155 25.5793 2.573 25.5443 3.06001L23.8943 19.56C23.7875 20.6399 23.2827 21.6415 22.4782 22.3698C21.6737 23.098 20.627 23.5009 19.5418 23.5H6.5668C5.48232 23.4999 4.43654 23.097 3.63232 22.3694C2.82809 21.6419 2.32275 20.6416 2.2143 19.5625L0.564299 3.06251C0.532988 2.81426 0.551681 2.56226 0.619277 2.32135C0.686873 2.08044 0.802005 1.85549 0.957887 1.65976C1.11377 1.46404 1.30725 1.30149 1.52693 1.18171C1.74661 1.06192 1.98804 0.987315 2.237 0.962286C2.48596 0.937256 2.73741 0.96231 2.97654 1.03597C3.21567 1.10963 3.43763 1.23041 3.62936 1.39119C3.82108 1.55196 3.97869 1.74949 4.09288 1.97212C4.20708 2.19476 4.27557 2.438 4.2943 2.68751Z"
+                  fill="#1E1E1E" />
+              </svg>
+            </button>
+          </div>
+
+        </article>
+      </li>
+    </ul>
+  </div>
+
+</body>
+
+</html>
